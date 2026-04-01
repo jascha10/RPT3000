@@ -1,12 +1,7 @@
 # COBOL RPT3000 – Sales Report Program
 
 ## 📘 Introduction
-This COBOL program generates a detailed **Year-To-Date Sales Report** using customer data. It calculates both the **change in sales amount** and the **percentage change** between the current year and the previous year.
-
-In addition to customer-level data, the program also produces:
-- Sales Representative totals
-- Branch totals
-- Grand totals across all data
+The RPT3000 is a sophisticated COBOL-based reporting engine designed to analyze year-over-year sales performance. By processing historical and current transaction data, the program provides deep insights into sales trends, growth metrics, and organizational performance across multiple tiers.
 
 ---
 
