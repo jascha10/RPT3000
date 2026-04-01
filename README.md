@@ -53,15 +53,10 @@ For each run, the program:
 ---
 
 ## 🖥️ Output Example
-RPT5000:
-
-<img width="691" height="472" alt="image" src="" />
-
----
 
 RPT3000:
 
-<img width="892" height="521" alt="image" src="" />
+<img width="892" height="521" alt="image" src="assets/output.png" />
 
 ---
 
