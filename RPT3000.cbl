@@ -81,8 +81,8 @@
            05 FILLER                 PIC X     VALUE "/".
            05 HL1-YEAR               PIC 9(4).
            05 FILLER                 PIC X(16) VALUE SPACE.
-           05 FILLER                 PIC X(27) VALUE "YEAR-TO-DATE SALES 
-           "REPORT".
+           05 FILLER                 PIC X(19) VALUE "YEAR-TO-DATE SALES".
+           05 FILLER                 PIC X(6)  VALUE "REPORT". 
            05 FILLER                 PIC X(22) VALUE SPACE.
            05 FILLER                 PIC X(7)  VALUE "PAGE:  ".
            05 HL1-PAGE               PIC ZZZ9.
