@@ -25,25 +25,29 @@ The RPT3000 is a sophisticated COBOL-based reporting engine designed to analyze 
 
 ## 📌 What does it do?
 
-For each run, the program:
+### ⚙️ How It Works
+For every execution, the **RPT3000** follows a simple three-step process:
 
-1. Reads customer sales data from an input file  
-2. Calculates:
-   - Sales difference (This Year - Last Year)
-   - Percentage change in sales  
-3. Outputs a formatted report including:
-   - Branch Number  
-   - Sales Representative Number  
-   - Customer Number  
-   - Customer Name  
-   - Sales (This Year)  
-   - Sales (Last Year)  
-   - Change in Amount  
-   - Change in Percentage  
-4. Groups and summarizes data at multiple levels:
-   - Sales Representative totals  
-   - Branch totals  
-   - Grand totals  
+1.  **Read:** It pulls customer sales records from an input data file.
+2.  **Calculate:** * **Sales Difference:** (This Year - Last Year)
+    * **Percentage Change:** The growth or decline in sales.
+3.  **Output:** It generates a formatted report that groups and totals the data.
+
+---
+
+### 📋 Report Breakdown
+The program organizes information into a clean table with the following details:
+
+| Grouping | Customer Details | Financial Data |
+| :--- | :--- | :--- |
+| Branch Number | Customer Number | Sales (This Year vs. Last Year) |
+| Sales Rep Number | Customer Name | Change in Amount & Percentage |
+
+### 📊 Summary Totals
+To help track performance at different levels, the program automatically calculates:
+* **Sales Representative Totals** (Sub-totals for each rep)
+* **Branch Totals** (Sub-totals for each office/location)
+* **Grand Totals** (The final sum of all data processed)
 
 ---
 
