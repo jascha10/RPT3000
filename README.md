@@ -68,47 +68,47 @@ RPT3000:
 ## 🧠 COBOL Concepts Used
 
 ### 1. Control Break Logic
-The program detects changes in **Branch** or **Sales Representative** to trigger totals.
+I designed the program to detect changes in the Branch or Sales Representative numbers to trigger totals. Because the input file is sorted, I can compare the current record to the previous one to decide when a group has ended.
 
-When a change occurs:
-- Prints totals
-- Resets accumulators
+When a change occurs: I print the sub-totals for that group, reset the accumulators to zero, and update the "old" comparison fields.
 
-Example:
-IF WS-CURRENT-BRANCH NOT = WS-PREVIOUS-BRANCH
-
----
+Example from my code: WHEN CM-BRANCH-NUMBER > OLD-BRANCH-NUMBER
 
 ### 2. Accumulators (Totals)
-Values are continuously added and rolled up:
-ADD CM-SALES-THIS-YTD TO ST-THIS-YTD
+I use specific variables to "roll up" sales data from the individual customer level all the way to the final grand total.
 
-Totals are calculated at:
-- Salesrep level → Branch level → Grand total
+Continuous Adding: I use ADD CM-SALES-THIS-YTD TO SALESREP-TOTAL-THIS-YTD for every record.
 
----
+The Hierarchy: I calculate totals at three distinct levels:
+
+Salesrep level (Minor) → Branch level (Intermediate) → Grand total (Major)
 
 ### 3. Percentage Calculation
-COMPUTE WS-CHANGE-PERCENT =
-(WS-CHANGE-AMOUNT / CM-SALES-LAST-YTD) * 100
+I use the COMPUTE statement to determine the trend between this year and last year. I also included the ROUNDED clause to ensure the math is accurate to the nearest decimal.
 
-Special case to prevent division by zero:
+The Formula: COMPUTE CL-CHANGE-PERCENT ROUNDED = CHANGE-AMOUNT * 100 / CM-SALES-LAST-YTD
 
-IF CM-SALES-LAST-YTD = 0
-MOVE 999.9
+Zero Division Protection: To prevent the program from crashing if a customer had zero sales last year, I added a special check:
 
----
+IF CM-SALES-LAST-YTD = ZERO MOVE 999.9 TO CL-CHANGE-PERCENT
 
 ### 4. Data Formatting (PIC Clauses)
-- `Z,ZZZ,ZZ9.99-` → formatted numeric output  
-- `X(20)` → text field  
-- `9(5)` → numeric field  
+I used specific Picture (PIC) clauses to turn raw computer data into a readable business report.
 
----
+Z,ZZZ,ZZ9.99-: I used this for numeric output to suppress leading zeros and include a trailing minus sign for negative changes.
 
-### 5. File Handling
-- Reads from input file (`I_CUSTMAST`)
-- Writes formatted report to output file (`O_RPT5000`)
+X(20): I used this for alphanumeric text fields, like the Customer Name.
+
+9(5): I used this for standard numeric fields used in calculations, like the Customer Number.
+
+### 5. File Handling and Sequential Processing
+I implemented the standard lifecycle for data processing by connecting the program to external files.
+
+Input: I read customer records one by one from I_CUSTMAST.
+
+Output: I write the formatted report lines (Headings, Details, and Totals) to O_RPT5000.
+
+End of File: I use a "Priming Read" and a PERFORM UNTIL loop to ensure I process every record until the AT END condition is met.
 
 ---
 ### Resources
